@@ -1,7 +1,6 @@
+// creating registers - not sure if it works
 
-`timescale 1ns/10ps
-
-module register #(parameter qInitial = 0)(
+module register(
 	input wire clk, 
 	input wire rst,
 	input wire enable,
@@ -10,14 +9,14 @@ module register #(parameter qInitial = 0)(
 );
 
 
-	initial q = qInitial;
+	
 	always@(posedge clk) 
 	begin
 		if (rst) begin
 			q = 32'b0;
 		end
 		else if(enable) begin
-			q[31:0] = d[31:0];
+			q = d;
 		end 
 	end
 endmodule
