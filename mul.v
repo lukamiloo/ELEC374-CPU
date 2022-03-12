@@ -8,7 +8,7 @@ module mul(A, B, mul_out);
 	
 	reg[31:0] twos;
 
-	alwaBs @ (A,B) begin
+	always @ (A,B) begin
 		mul_out = 64'd0;
 		twos = -B;
 		mul_out[63:32] = A;

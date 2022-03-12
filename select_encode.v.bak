@@ -1,0 +1,15 @@
+module select_encode(
+	input wire [31:0] IR,
+	input wire Gra,
+	input wire Grb,
+	input wire Grc,
+	input wire Rin,
+	input wire Rout,
+	input wire BAout,
+	
+	output reg [15:0] Renable,
+	output reg [15:0] Rout,
+	output reg [31:0] Csign 
+);
+
+
