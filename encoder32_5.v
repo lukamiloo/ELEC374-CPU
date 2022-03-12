@@ -1,16 +1,12 @@
 `timescale 1ns/10ps
 module encoder32_5 (
-	input wire [31:0] encoderIn, // 32 encoder inputs
-	output reg [4:0] encoderOut // 5 output signals
-	//input  enable 
+	input wire [31:0] encoderIn, 
+	output reg [4:0] encoderOut 
+	 
 );
 
-//input wire [31:0] encoderIn; // 32 encoder inputs
-//output reg [4:0] encoderOut; // 5 output signals
-//input  enable; 
-	
+
 	always@(*) begin
-	// Switch for determining encoder output
 		case(encoderIn)
 			32'h00000001 : encoderOut <= 5'd0;   
 			32'h00000002 : encoderOut <= 5'd1;     

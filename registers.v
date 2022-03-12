@@ -1,7 +1,7 @@
 
 `timescale 1ns/10ps
 
-module register #(parameter qInitial = 0)(
+module register #(parameter init = 0)(
 	input wire clk, 
 	input wire rst,
 	input wire enable,
@@ -10,7 +10,7 @@ module register #(parameter qInitial = 0)(
 );
 
 
-	initial q = qInitial;
+	initial q = init;
 	always@(posedge clk) 
 	begin
 		if (rst) begin

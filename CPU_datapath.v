@@ -4,10 +4,7 @@ module CPU_datapath(
 	input [31:0] Mdatain,
 	input clk, 
 	input rst,
-	//input [31:0] MDatain,
-	//input [15:0] R_enableIn, Rout_in, 	
-	//input [31:0] inport_in,
-	// add wire to connect output to inputs
+	
 	input PCout,
 	input Zhighout,
 	input Zlowout,
@@ -21,7 +18,7 @@ module CPU_datapath(
 	input Yin,
 	input IncPC,
 	input Read,
-   input wire [4:0] AND,			//opcode at some point
+   input wire [4:0] AND,		
 	input R5in,
 	input R2in,
 	input R4in,
@@ -40,30 +37,17 @@ module CPU_datapath(
 	input HIin, 
 	input LOin, 
 	input Zin, 
-	//output reg [15:0] enableR, 
+	
 	input Cin,
-	//output [31:0] bus_out
+	
 	
 	output [31:0] bus_cont,
 	output [63:0] alu_out
 	
-	//output [31:0] bus_cont
+	
 ); 
 	
-//output wire enableselect;
-	//wire [15:0] enableR_IR;
-	//wire [15:0] Rout_IR;
-//	
-//	initial 
-//		begin Mdatain = 32'b0;
-//	end
-	//reg  [15:0] Rout;	
-	//wire [31:0] bus_out;
-	//ssign bus_cont = bus_out;
-	
-//	wire PCout, ZHighout, ZLowout, MDRout, R2out, R4out, MARin, PCin, MDRin, IRin, Yin, IncPC,Read,
-//	AND, R5in, R2in, R4in, R1in, R3in, R6in, R7in, R8in, R9in, R10in, R11in, 
-//	R12in, R13in, R14in, R15in, HIin, LOin, ZHighIn, ZLowIn, Cin;
+
 	
 	wire [31:0] bus_out;
 	assign bus_cont = bus_out;
@@ -184,13 +168,12 @@ register LO (.clk (clk), .rst (rst), .enable (LOin), .d (bus_out), .q (LO_dout))
 register Y (.clk (clk), .rst (rst), .enable (Yin), .d (bus_out), .q (Y_dout));
 register InPort (.clk (clk), .rst (rst), .enable (IncPC), .d (bus_out), .q (InPort_dout));
 register C_sign_ex (.clk (clk), .rst (rst), .enable (Cin), .d (bus_out), .q (C_sign_ex_dout));
-// general purpose wireisters
+// general purpose reisters
 
 register_64 Z (.clk (clk), .rst (rst), .enable (Zin), .d (C_dout), .high(Zhigh_dout), .low(Zlow_dout));
 	
-//wire [31:0] 	;
 wire [4:0]encoderToMux;
-//wire [31:0] 
+
 
 //wire [31:0] AluOUT;
  
@@ -200,7 +183,7 @@ encoder32_5 encoder (
 ); 
 
 mux_32_5 mux1 (
-	.BusMuxIn_R0 (R0_dout),//general purpose wireisters R1-R15	
+	.BusMuxIn_R0 (R0_dout),
 	.BusMuxIn_R1 (R1_dout),	
 	.BusMuxIn_R2 (R2_dout),
 	.BusMuxIn_R3 (R3_dout),
@@ -251,6 +234,5 @@ ALU alu (
 );
 
 
-// use 32:1 multiplexer with five slect input signals coming from a 32-to-5 encoder
 endmodule
 	

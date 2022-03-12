@@ -1,7 +1,7 @@
 `timescale 1ns/10ps
 module mux_32_5(
 
-	input [31:0] BusMuxIn_R0,//general purpose registers R1-R15	
+	input [31:0] BusMuxIn_R0,
 	input [31:0] BusMuxIn_R1,	
 	input [31:0] BusMuxIn_R2,
 	input [31:0] BusMuxIn_R3,

@@ -1,6 +1,6 @@
 `timescale 1ns/10ps
 
-module register_64 #(parameter qInitial = 0)(
+module register_64 #(parameter init = 0)(
 	input wire clk, 
 	input wire rst,
 	input wire enable,
@@ -10,8 +10,8 @@ module register_64 #(parameter qInitial = 0)(
 );
 
 
-	initial high = qInitial;
-	initial low = qInitial;
+	initial high = init;
+	initial low = init;
 	always@(posedge clk) 
 	begin
 		if (rst) begin

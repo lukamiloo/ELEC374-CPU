@@ -1,9 +1,9 @@
 `timescale 1ns/10ps
-module rol_tb;       
+module neg_tb;       
     reg  PCout, Zlowout, Zhighout, MDRout, R2out, R4out;           //add any other signals to see in your simulation 
     reg  MARin, PCin, MDRin, IRin, Yin, Cin, Zin;    
     reg  IncPC, Read, R5in, R2in, R4in;
-	 reg  [4:0] ROL;
+	 reg  [4:0] NOT;
 	 reg  R1in, R3in, R6in, R7in, R8in, R9in, R10in, R11in; 
 	 reg  R12in, R13in, R14in, R15in;
     reg  clk, rst;
@@ -22,7 +22,7 @@ Reg_load3a = 4'b0101, Reg_load3b = 4'b0110, T0 = 4'b0111, T1 = 4'b1000, T2 = 4'b
 reg   [3:0] Present_state = Default; 
  
 CPU_datapath DUT(.Mdatain(Mdatain), .PCout(PCout), .Zhighout(Zhighout), .Zlowout(Zlowout), .MDRout(MDRout), .R2out(R2out), .R4out(R4out), .MARin(MARin), .PCin(PCin), .MDRin(MDRin), 
-.IRin(IRin), .Yin(Yin), .IncPC(IncPC), .Read(Read),.AND(ROL), .R5in(R5in), .R2in(R2in), .R4in(R4in), .clk(clk), .rst(rst), .R1in(R1in), .R3in(R3in), 
+.IRin(IRin), .Yin(Yin), .IncPC(IncPC), .Read(Read),.AND(NOT), .R5in(R5in), .R2in(R2in), .R4in(R4in), .clk(clk), .rst(rst), .R1in(R1in), .R3in(R3in), 
 .R6in(R6in), .R7in(R7in), .R8in(R8in), .R9in(R9in), .R10in(R10in), .R11in(R11in), .R12in(R12in), .R13in(R13in), .R14in(R14in), .R15in(R15in), .HIin(HIin), .LOin(LOin), 
 .Zin(Zin), .Cin(Cin), .bus_cont(bus_cont), .alu_out(alu_out));
  
@@ -61,7 +61,7 @@ always @(Present_state)  // do the required job in each state
 				R2out <= 0; R4out <= 0; MARin <= 0;   
 				Zin <= 0; PCin <=0; MDRin <= 0;   
 				IRin  <= 0; Yin <= 0; IncPC <= 0;   
-				Read <= 0; ROL <= 0; R5in <= 0; 
+				Read <= 0; NOT <= 0; R5in <= 0; 
 				R2in <= 0; R4in <= 0; R1in <= 0;
 				R3in <= 0; R6in <= 0; R7in <= 0;
 				R8in <= 0; R9in <= 0; R10in <= 0;
@@ -84,7 +84,7 @@ always @(Present_state)  // do the required job in each state
 			end
 			
 			Reg_load2a: begin   
-				Mdatain <= 32'h00000036; 
+				Mdatain <= 32'h00000023; 
 				#10 Read <= 1; MDRin <= 1;    
 				#15 Read <= 0; MDRin <= 0;      
 			end
@@ -123,12 +123,12 @@ always @(Present_state)  // do the required job in each state
  
 			T3: begin 
 				#10 R2out <= 1; Yin <= 1;
-				#10 R2out <= 0; Yin <= 0;	
+				#15 R2out <= 0; Yin <= 0;	
 			end
 			
 			T4: begin 
-				 R4out <= 1;ROL <= 5'b01000; Zin <= 1;
-				#20 R4out <= 0; Zin <= 0;	
+				R4out <= 1;NOT <= 5'b10001; Zin <= 1;
+				#25 R4out <= 0; Zin <= 0;	
 			end
 			
 			T5: begin 
