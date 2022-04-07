@@ -46,7 +46,13 @@ module ALU(
            ALU_Result = ~A;
         5'b10000: // neg
            ALU_Result = ~A + 1;
-          default: ALU_Result = 64'b0; 
+		  5'b01011: // addi
+           ALU_Result = A + B;
+		  5'b01100: // andi
+           ALU_Result = A & B;
+		  5'b01101: // ori
+           ALU_Result = A | B;  
+          default: ALU_Result = A + B ; 
         endcase
     end
 	 

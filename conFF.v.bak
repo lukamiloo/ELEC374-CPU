@@ -1,0 +1,15 @@
+module conFF(
+	input [1:0] c2,
+	input [31:0] bus_in,
+	output con_out
+
+);
+
+wire [3:0] decoder_out;
+wire [31:0] busa;
+
+decoder_2_4 decoder(c2,decoder_out);
+
+XOR(busa, bus_in);
+
+con_out = (decoder_out[0] & bus_in) | (decoder_out[1] & (~bus_in)) | (decoder_out[2] & bus_in) |(decoder_out[3] & bus_in)

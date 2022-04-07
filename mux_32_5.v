@@ -58,8 +58,7 @@ module mux_32_5(
 			5'd20 : BusMux_Out <= BusMuxIn_PC[31:0];
 			5'd21 : BusMux_Out <= BusMuxIn_MDR[31:0];
 			5'd22 : BusMux_Out <= BusMuxIn_InPort[31:0];
-			5'd23 : BusMux_Out <= BusMuxIn_C_Sign_Extended[31:0];
-			default : BusMux_Out <= 32'd0;
+			default : BusMux_Out <= BusMuxIn_C_Sign_Extended[31:0];
 		endcase
 	end
 endmodule

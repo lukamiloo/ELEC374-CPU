@@ -3,8 +3,8 @@ module select_encode(
 	input wire Gra,
 	input wire Grb,
 	input wire Grc,
-	input wire [15:0] Rin,
-	input wire [15:0] Rout,
+	input wire Rin,
+	input wire Rout,
 	input wire BAout,
 	
 	output [15:0] Renable,
@@ -40,6 +40,6 @@ module select_encode(
 
 	assign R_out = ({16{Rout}} | {16{BAout}}) & decoder_out;
 
-	assign Csign = {{13{IR[18]}}, IR[18:0]};
+	assign Csign = {{13{IR[18]}}, IR[18:0]};// should be c
 
 endmodule
